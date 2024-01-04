@@ -5,7 +5,6 @@
 // Execute `rustlings hint structs2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 #[derive(Debug)]
 struct Order {
@@ -38,7 +37,17 @@ mod tests {
     fn your_order() {
         let order_template = create_order_template();
         // TODO: Create your own order using the update syntax and template above!
-        // let your_order =
+        let your_order = Order {
+            name: String::from("Hacker in Rust"),
+            count: 1,
+            ..order_template // fill the rest of the fields from order_template
+                             // must be at the end (see Listing 5-7)
+        };
+        println!("{:?}", your_order);
+        println!("{:?}", order_template); // order_template is still valid
+        //note that if name is not specified, it will be taken from order_template
+        //but then order_template will not valid - unless name implements Copy trait
+
         assert_eq!(your_order.name, "Hacker in Rust");
         assert_eq!(your_order.year, order_template.year);
         assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
